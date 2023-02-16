@@ -2,7 +2,10 @@ exports.timer = {
     minutes: 5,
     seconds: 0,
 }
-
+exports.defaultValue = {
+    Marks: 4,
+    neg_marks: -2,
+}
 exports.stages = [
     {
         question: 'Sample Question 1',
@@ -12,9 +15,7 @@ exports.stages = [
             'q1a3',
             'q1a4',
         ],
-        correct: 1,
-        marks: 4,
-        neg_marks: -2,
+        correct: 0,
     },
     {
         question: 'Sample Question 2',
@@ -25,7 +26,6 @@ exports.stages = [
             'q2a4',
         ],
         correct: 0,
-        marks: 4,
         neg_marks: -2,
     },
     {
@@ -36,9 +36,8 @@ exports.stages = [
             'q3a3',
             'q3a4',
         ],
-        correct: 2,
+        correct: 0,
         marks: 4,
-        neg_marks: -2,
     },
     {
         question: 'Sample Question 4',
@@ -48,7 +47,7 @@ exports.stages = [
             'q4a3',
             'q4a4',
         ],
-        correct: 3,
+        correct: 0,
         marks: 4,
         neg_marks: -2,
     },

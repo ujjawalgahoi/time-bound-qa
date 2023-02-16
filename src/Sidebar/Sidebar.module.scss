@@ -1,13 +1,15 @@
 .side-bar {
 
-    width: 30%;
+    width: 15%;
     border-radius: 4px;
+    padding-left: 8px;
     border: 1px solid black;
     height: fit-content;
     display: flex;
+    text-align: left;
+    color: brown;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     
     .option, .not-chosen {
         margin: 12px;

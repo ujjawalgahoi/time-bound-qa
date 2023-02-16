@@ -67,7 +67,7 @@ function QuestionBoard(props) {
           </button>
         )}
 				{props.currentIndex === props.stages.length - 1 && (
-          <button className={styles["next"]} onClick={() => props.setIsCompleted(true)}>
+          <button className={styles["submit"]} onClick={() => props.setIsCompleted(true)}>
             Submit
           </button>
         )}

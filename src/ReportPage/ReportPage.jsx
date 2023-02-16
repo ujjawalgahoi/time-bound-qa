@@ -1,4 +1,5 @@
 import React from "react";
+import { defaultValue } from "../config";
 import styles from "./ReportPage.module.scss";
 
 function ReportPage(props) {
@@ -13,13 +14,12 @@ function ReportPage(props) {
   };
 
   const scoreCalculate = () => {
-    return props.stages
-      .map((stage, index) => {
+    return props.stages.map((stage, index) => {
         if (props.chosenOptions[index] > -1) {
           if (props.chosenOptions[index] === stage.correct) {
-            return stage.marks;
+            return stage.marks || defaultValue.Marks ;
           } else {
-            return stage.neg_marks;
+            return stage.neg_marks || defaultValue.neg_marks ;
           }
         } else {
           return 0;
