@@ -1,10 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { timer } from "../config";
 import styles from "./QuestionBoard.module.scss";
+
 
 function QuestionBoard(props) {
   document.title = `${props.currentIndex + 1}. ${
     props.stages[props.currentIndex].question
   }`;
+  
+  useEffect(() => {
+    if (props.totalTime > 0) {
+      let currentTimer = setTimeout(() => {
+        props.setTotalTime(props.totalTime - 1);
+      }, 1000);
+      return () => {
+        clearTimeout(currentTimer);
+      }
+    } 
+    else {
+      if (props.currentIndex === props.stages.length - 1){
+        props.setIsCompleted(true);
+      }
+      else {
+        handleNextBtn();
+      }
+    }
+  }, [props.totalTime]);
 
   const updateValues = () => {
     let tempOptions = props.chosenOptions;
@@ -12,21 +33,22 @@ function QuestionBoard(props) {
       tempOptions[props.currentIndex] = -1;
     props.setChosenOptions([...tempOptions]);
     console.log({ ss: props.chosenOptions });
+    props.setTotalTime(timer.minutes * 60 + timer.seconds)
     document.title = `${props.currentIndex + 1}. ${
       props.stages[props.currentIndex].question
     }`;
   };
 
-  const handlePreviousBtn = () => {
-    updateValues();
-    props.setCurrentIndex(props.currentIndex - 1);
-  };
+  // const handlePreviousBtn = () => {
+  //   updateValues();
+  //   props.setCurrentIndex(props.currentIndex - 1);
+  // };
 
   const handleNextBtn = () => {
     updateValues();
     props.setCurrentIndex(props.currentIndex + 1);
   };
-
+ // [1,1,1,1]
   const chooseOption = (newOption) => {
     let tempOptions = props.chosenOptions; //tempOptions = [1,2,3,4]
     tempOptions[props.currentIndex] = newOption;
@@ -56,11 +78,11 @@ function QuestionBoard(props) {
         })}
       </div>
       <div className={styles["bottom-bar"]}>
-        {props.currentIndex > 0 && (
+        {/* {props.currentIndex > 0 && (
           <button className={styles["prev"]} onClick={handlePreviousBtn}>
             Previous
           </button>
-        )}
+        )} */}
         {props.currentIndex < props.stages.length - 1 && (
           <button className={styles["next"]} onClick={handleNextBtn}>
             Next

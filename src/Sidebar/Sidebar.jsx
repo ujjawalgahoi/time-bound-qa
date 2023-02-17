@@ -12,7 +12,6 @@ function Sidebar(props) {
             return (
               <div
                 className={styles["not-chosen"]}
-                onClick={() => props.setCurrentIndex(index)}
               >
                 {index + 1}. No Option Chosen
               </div>
@@ -21,7 +20,6 @@ function Sidebar(props) {
             return (
               <div
                 className={styles["option"]}
-                onClick={() => props.setCurrentIndex(index)}
               >
                 {index + 1}. {props.stages[index].options[option]}
               </div>

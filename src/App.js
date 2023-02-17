@@ -7,6 +7,7 @@ import { stages, timer } from "./config";
 import { useState } from "react";
 import Timer from "./Timer/TImer";
 import ReportPage from "./ReportPage/ReportPage";
+import Title from "./Title/title";
 
 const getEmptyInputs = () => {
   return stages.map((val) => -2);
@@ -20,7 +21,9 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [chosenOptions, setChosenOptions] = useState(getEmptyInputs());
   const [isCompleted, setIsCompleted] = useState(false);
-
+  const [totalTime, setTotalTime] = useState(
+    timer.minutes * 60 + timer.seconds
+  );
   return (
     <div className="App">
       {isCompleted ? (
@@ -31,13 +34,16 @@ function App() {
         />
       ) : (
         <>
-          <Timer minutes={timer.minutes} seconds={timer.seconds} setIsCompleted={setIsCompleted} />
+          <Title/>
+          <Timer totalTime={totalTime} setTotalTime={setTotalTime} setIsCompleted={setIsCompleted} />
           <Sidebar
             chosenOptions={chosenOptions}
             setCurrentIndex={setCurrentIndex}
             stages={stages}
           />
           <QuestionBoard
+            totalTime={totalTime}
+            setTotalTime={setTotalTime}
             chosenOptions={chosenOptions}
             setChosenOptions={setChosenOptions}
             currentIndex={currentIndex}
